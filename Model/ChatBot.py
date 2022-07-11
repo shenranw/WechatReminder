@@ -1,5 +1,5 @@
-import wxpy
 from wxpy import *
+from CB_Util import *
 
 
 class ChatBot:
@@ -24,7 +24,7 @@ class ChatBot:
         """
         self.bot = Bot()
 
-    def set_bot(self, bot: wxpy.Bot):
+    def set_bot(self, bot: Bot):
         """
         Assign bot to self.bot
         Requires: None
@@ -34,7 +34,7 @@ class ChatBot:
         """
         self.bot = bot
 
-    def set_friend(self, friend: wxpy.Friend):
+    def set_friend(self, friend: Friend):
         """
         Assign friend to self.friend
         Requires: None
@@ -76,3 +76,12 @@ class ChatBot:
         :return:
         """
         self.friend.send_image(img_path)
+
+    def receive_msg(self):
+        """
+        Receive message from self.friend
+        Requires: self.bot, self.friend are not None
+        Modifies: None
+        :return: (str) message received
+        """
+        return receive_msg(self.bot)
