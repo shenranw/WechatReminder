@@ -1,6 +1,5 @@
-import threading
 import datetime
-from TimeException import TimeException
+from Exception.TimeException import TimeException
 
 
 class Event:
