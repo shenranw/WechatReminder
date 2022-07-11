@@ -1,5 +1,4 @@
-from wxpy import *
-from CB_Util import *
+from Util.CB_Util import *
 
 
 class ChatBot:
