@@ -11,5 +11,5 @@ def receive_msg(bot: Bot):
     def receive(msg):
         return msg
 
-    msg = receive()
-    return msg
+    m = receive()
+    return m
