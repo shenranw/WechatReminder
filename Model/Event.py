@@ -26,11 +26,8 @@ class Event:
         :param call_back: (function str, Any -> None) callback function to call on event. It must take a str input for
         the first argument, and any input for the rest, default = None
         :param args: (Any) arguments for callback function, default = None
-        :raise: TimeException
         """
         self.time = datetime.datetime(year, month, day, hour, minute)
-        if (datetime.datetime.now() - self.time).total_seconds() <= 0:
-            raise TimeException
         self.event = event
         self.call_back = call_back
         self.args = args
@@ -47,11 +44,8 @@ class Event:
         :param hour: (int) hour of new time
         :param minute: (int) minute of new time
         :return: None
-        :raise: TimeException
         """
         self.time = datetime.datetime(year, month, day, hour, minute)
-        if (datetime.datetime.now() - self.time).total_seconds() <= 0:
-            raise TimeException
 
     def set_callback(self, call_back, args):
         """
@@ -71,9 +65,16 @@ class Event:
         Requires: self.event, self.time are not None
         Modifies: None
         :return: None
+        :raise: TimeException
         """
-        self.cond.wait_for(check_time(self.time))
-        self.call_back(self.event, self.args)
+        if (datetime.datetime.now() - self.time).total_seconds() <= 0:
+            raise TimeException
+        with self.cond:
+            self.cond.wait_for(check_time(self.time))
+            if self.args:
+                self.call_back(self.event, self.args)
+            else:
+                self.call_back(self.event)
 
     def __lt__(self, other):
         return self.time < other.time

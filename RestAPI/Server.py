@@ -2,22 +2,24 @@ from flask import Flask
 import socket
 import json
 
+from Model.RequestHandler import RequestHandler
+
 app = Flask(__name__)
+requestHandler = RequestHandler()
 
 
-@app.route("/add_to_calendar/<string:year>/<string:month>/<string:day>/<string:hour>/<string:minute>/<string:event>")
-def add_to_calendar(year: str, month: str, day: str, hour: str, minute: str, event: str):
+@app.route("/add_to_calendar/<string:command>/<string:args>")
+def add_to_calendar(command: str, args: str):
     """
     Add event to calendar
-    :param year: (str) year of event
-    :param month: (str) month of event
-    :param day: (str) day of event
-    :param hour: (str) time (hour) of event
-    :param minute: (str) time (minute) of event
-    :param event: (str) description of event
+    :param command: (str) command of event
+    :param args: (str) arguments for RequestHandler
     :return: None
     """
-    # TODO: backend calendar object add event
+    if command == "notify":
+        requestHandler.handle_text_event_notify(args)
+    elif command == "delete":
+        requestHandler.handle_text_event_delete(args)
 
 
 def getHost():

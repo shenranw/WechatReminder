@@ -45,7 +45,7 @@ class EventCalendar:
 
     def remove_event(self, event: Event):
         """
-        Removes the specifies event from self.calendar
+        Removes the specifies event from self.calendar if it exists
         :param event: event to be removed
         :return: None
         """

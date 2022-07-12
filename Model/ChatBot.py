@@ -52,9 +52,9 @@ class ChatBot:
         :param sex: (wxpy.MALE / wxpy.FEMALE) sex of friend to find, default None
         :param city: (str) city of friend to find, default None
         :param province: (str) province of friend to find, default None
-        :return: None
+        :return: (Friend) friend found
         """
-        self.friend = self.bot.friends().search(name, sex=sex, city=city, province=province)[0]
+        return self.bot.friends().search(name, sex=sex, city=city, province=province)[0]
 
     def send_text(self, msg: str):
         """
