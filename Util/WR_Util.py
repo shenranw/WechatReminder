@@ -1,3 +1,4 @@
+import datetime
 from wxpy import *
 
 
@@ -13,3 +14,8 @@ def receive_msg(bot: Bot):
 
     m = receive()
     return m
+
+
+def check_time(time):
+    now = datetime.datetime.now()
+    return now == time

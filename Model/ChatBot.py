@@ -1,4 +1,4 @@
-from Util.CB_Util import *
+from Util.WR_Util import *
 
 
 class ChatBot:
