@@ -3,9 +3,9 @@ from Event import Event
 
 class EventCalendar:
     """
-    fields                                  type                                    Description
+    fields                              type                                Description
     --------------------------------------------------------------------------------------------------------------------
-    calendar                                (list<Event>)                           List of events
+    calendar                            (list<Event>)                       List of events in ascending order of time
     """
     def __init__(self):
         self.calendar = []
