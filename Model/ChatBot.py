@@ -5,8 +5,8 @@ class ChatBot:
     """
     fields                          Type                            Description
     --------------------------------------------------------------------------------------------------------------------
-    bot                             wxpy.Bot                        Bot object for chatting
-    friend                          wxpy.Friend                     Current conversation friend
+    bot                             (wxpy.Bot)                      Bot object for chatting
+    friend                          (wxpy.Friend)                   Current conversation friend
     """
 
     def __init__(self):

@@ -74,3 +74,18 @@ class Event:
         """
         self.cond.wait_for(check_time(self.time))
         self.call_back(self.event, self.args)
+
+    def __lt__(self, other):
+        return self.time < other.time
+
+    def __gt__(self, other):
+        return self.time > other.time
+
+    def __le__(self, other):
+        return self.time <= other.time
+
+    def __ge__(self, other):
+        return self.time >= other.time
+
+    def __eq__(self, other):
+        return self.event == other.event and self.time == other.time

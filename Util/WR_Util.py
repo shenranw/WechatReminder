@@ -17,5 +17,10 @@ def receive_msg(bot: Bot):
 
 
 def check_time(time):
+    """
+    Checks whether now is equal to given time
+    :param time: time to check
+    :return: (bool) True if now is equal to time, False otherwise
+    """
     now = datetime.datetime.now()
     return now == time
