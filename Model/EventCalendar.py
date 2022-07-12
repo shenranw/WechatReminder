@@ -18,7 +18,30 @@ class EventCalendar:
         :param event: event to be added to self.calendar
         :return: None
         """
-        # TODO: perform binary search to find spot to add event
+        lo = 0
+        hi = len(self.calendar) - 1
+        index = 0
+        if hi < 0:
+            pass
+        elif self.calendar[hi] > event > self.calendar[lo]:
+            while lo < hi:
+                mid = int((lo + hi) / 2)
+                mid_event = self.calendar[mid]
+                if hi - lo == 1:
+                    index = hi
+                    break
+                elif event == mid_event:
+                    index = mid + 1
+                    break
+                elif event > mid_event:
+                    lo = mid
+                elif event < mid_event:
+                    hi = mid
+        elif self.calendar[hi] < event:
+            index = hi + 1
+
+        self.calendar.insert(index, event)
+
 
     def remove_event(self, event: Event):
         """
@@ -26,4 +49,4 @@ class EventCalendar:
         :param event: event to be removed
         :return: None
         """
-        # TODO: perform binary search to find spot to add event
+        self.calendar.remove(event)
