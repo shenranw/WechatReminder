@@ -6,6 +6,8 @@ from Util.WR_Util import *
 
 class Event:
     """
+    Event is an event on a certain date time
+    Designed & programmed by Shenran Wang
     fields                              type                                Description
     --------------------------------------------------------------------------------------------------------------------
     event                               (str)                               Event description

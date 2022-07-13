@@ -1,15 +1,21 @@
-from Util.WR_Util import *
+import queue
+
+from Model.Observable import Observable
+from wxpy import *
 
 
-class ChatBot:
+class ChatBot(Observable):
     """
+    ChatBot is in charge of sending and receiving messages to one friend in friend list
+    Designed & programmed by Shenran Wang
     fields                          Type                            Description
     --------------------------------------------------------------------------------------------------------------------
     bot                             (wxpy.Bot)                      Bot object for chatting
     friend                          (wxpy.Friend)                   Current conversation friend
     """
 
-    def __init__(self):
+    def __init__(self, observers=None):
+        super().__init__(observers)
         self.bot = None
         self.friend = None
 
@@ -22,6 +28,7 @@ class ChatBot:
         :return: None
         """
         self.bot = Bot()
+        self.subscribe_friend_msg()
 
     def set_bot(self, bot: Bot):
         """
@@ -72,15 +79,21 @@ class ChatBot:
         Requires: self.bot, self.friend are not None
         Modifies: None
         :param img_path: (str) path to image to be sent
-        :return:
+        :return: None
         """
         self.friend.send_image(img_path)
 
-    def receive_msg(self):
+    def subscribe_friend_msg(self):
         """
-        Receive message from self.friend
+        Continuously receive message from self.friend and update all observers
         Requires: self.bot, self.friend are not None
-        Modifies: None
-        :return: (str) message received
+        Modifies: self.new_msgs_lsnr_q
+        :return: None
         """
-        return receive_msg(self.bot)
+        cb = self
+
+        @self.bot.register(Friend, TEXT)
+        def receive_friend_msg(msg):
+            cb.notify_all(msg)
+
+        embed()

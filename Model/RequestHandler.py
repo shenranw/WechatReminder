@@ -6,7 +6,10 @@ from Util.WR_Util import *
 
 
 class RequestHandler:
+    # TODO: Implement Observer here and subscribe to ChatBot to handle message
     """
+    RequestHandler acts as a backend library, and is in charge of handling server requests
+    Designed & programmed by Shenran Wang
     fields                                      type                                        Description
     --------------------------------------------------------------------------------------------------------------------
     calendar                                    (EventCalendar)                             Calendar of events
@@ -15,6 +18,7 @@ class RequestHandler:
     def __init__(self):
         self.calendar = EventCalendar()
         self.bot = ChatBot()
+        self.bot.start_session()
 
     def handle_text_event_notify(self, event_description: str):
         """

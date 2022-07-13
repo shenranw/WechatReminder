@@ -3,6 +3,8 @@ from Event import Event
 
 class EventCalendar:
     """
+    EventCalendar is a calendar containing all events, past or upcoming
+    Designed & programmed by Shenran Wang
     fields                              type                                Description
     --------------------------------------------------------------------------------------------------------------------
     calendar                            (list<Event>)                       List of events in ascending order of time

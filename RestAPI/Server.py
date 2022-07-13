@@ -2,6 +2,7 @@ from flask import Flask
 import socket
 import json
 
+from Model.Command import Command
 from Model.RequestHandler import RequestHandler
 
 app = Flask(__name__)
@@ -16,9 +17,9 @@ def add_to_calendar(command: str, args: str):
     :param args: (str) arguments for RequestHandler
     :return: None
     """
-    if command == "notify":
+    if command == Command.NOTIFY:
         requestHandler.handle_text_event_notify(args)
-    elif command == "delete":
+    elif command == Command.DELETE:
         requestHandler.handle_text_event_delete(args)
 
 
