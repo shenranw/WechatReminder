@@ -4,23 +4,21 @@ import json
 
 from Model.Command import Command
 from Model.RequestHandler import RequestHandler
+from Util.WR_Util import *
 
 app = Flask(__name__)
 requestHandler = RequestHandler()
 
 
 @app.route("/add_to_calendar/<string:command>/<string:args>")
-def add_to_calendar(command: str, args: str):
+def add_to_calendar(command: Command, args: str):
     """
     Add event to calendar
     :param command: (str) command of event
     :param args: (str) arguments for RequestHandler
     :return: None
     """
-    if command == Command.NOTIFY:
-        requestHandler.handle_text_event_notify(args)
-    elif command == Command.DELETE:
-        requestHandler.handle_text_event_delete(args)
+    requestHandler.handle_event_text(command, args)
 
 
 def getHost():

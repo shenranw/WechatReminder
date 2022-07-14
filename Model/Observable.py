@@ -34,3 +34,13 @@ class Observable:
         """
         for o in self.observers:
             o.update(args)
+
+    def remove_observer(self, obserber: Observer):
+        """
+        Removes the selected observer
+        Requires: self.observers is not None
+        Modifise: self.observers
+        :param obserber: the observer to remove
+        :return: None
+        """
+        self.observers.remove(obserber)

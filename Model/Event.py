@@ -17,7 +17,23 @@ class Event:
     cond                                (threading.Condition)               Condition variable used for count down
     """
 
-    def __init__(self, year: int, month: int, day: int, hour: int, minute: int, event: str, call_back=None, args=None):
+    def __init__(self, time: datetime.datetime, event: str, call_back=None, *args):
+        """
+        Constructor that takes a datetime
+        :param time: (datetime.datetime) time of event
+        :param event: (str) event description
+        :param call_back: (function str, Any -> None) callback function to call on event, default = None
+        :param args: (Any) arguments for callback function, default = None
+        :return: None
+        """
+        self.time = time
+        self.event = event
+        self.call_back = call_back
+        self.args = args
+        self.cond = threading.Condition()
+
+    @classmethod
+    def datetime_event(cls, year: int, month: int, day: int, hour: int, minute: int, event: str, call_back=None, args=None):
         """
         :param year: (int) year of event
         :param month: (int) month of event
@@ -29,11 +45,7 @@ class Event:
         the first argument, and any input for the rest, default = None
         :param args: (Any) arguments for callback function, default = None
         """
-        self.time = datetime.datetime(year, month, day, hour, minute)
-        self.event = event
-        self.call_back = call_back
-        self.args = args
-        self.cond = threading.Condition()
+        return cls(datetime.datetime(year, month, day, hour, minute), event, call_back, args)
 
     def set_time(self, year, month, day, hour, minute):
         """

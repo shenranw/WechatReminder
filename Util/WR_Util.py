@@ -1,5 +1,9 @@
 import datetime
+from wxpy import *
+
 from Model.ChatBot import ChatBot
+from Model.Command import Command
+from Model.RequestHandler import RequestHandler
 
 
 def check_time(time):
@@ -12,11 +16,12 @@ def check_time(time):
     return now == time
 
 
-def push_notification(notification_title: str, bot: ChatBot):
+def push_notification(notification_title: str, bot: ChatBot, recipient: Friend):
     """
-    Sends notification to bot's current friend
+    Sends notification to bot's selected friend
     :param notification_title: (str) notification to send to bot's current friend
     :param bot: (ChatBot) the chat bot to send the notification
     :return: None
     """
+    bot.set_friend(recipient)
     bot.send_text(notification_title)
